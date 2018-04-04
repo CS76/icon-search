@@ -16,6 +16,7 @@ import argparse
 import time
 import requests
 import csv
+import json
 import ssl
 from os.path import basename
 from bs4 import BeautifulSoup, NavigableString
@@ -27,12 +28,13 @@ def main(arguments):
     parser = argparse.ArgumentParser(description=__doc__,
                                      formatter_class=argparse.RawDescriptionHelpFormatter)
     args = parser.parse_args(arguments)
-    client = algoliasearch.Client("********", "************************")
-    index = client.init_index('icon-search')
-    scrapeZurbCheatsheet()
-    scrapeMaterialCheatsheet()
-    scrapeFontAwesomeCheatsheet()
-    scrapeIconicCheatsheet()
+    client = algoliasearch.Client("OMA2ZHV973", "f16887717d3551149308c550f5caa179")
+    index = client.init_index('dev-icon-search')
+    # scrapeZurbCheatsheet()
+    # scrapeMaterialCheatsheet()
+    # scrapeFontAwesomeCheatsheet()
+    # scrapeIconicCheatsheet()
+    scrapeFontAwesome5Cheatsheet()
     global icons
     writeDataToFile("data.json",icons)
     index.add_objects(icons)
@@ -108,6 +110,48 @@ def scrapeZurbCheatsheet():
 			print icon["objectID"]
 			icons.append(icon)
 	printText(str(len(icons)))
+
+def scrapeFontAwesome5Cheatsheet():
+	printText("Fetching FontAwesome 5 Data")
+	cheatSheetHTML = open("FontAwesome5.htm","r")
+	cheatSheetSoup = BeautifulSoup(cheatSheetHTML, "html.parser")
+	wrapperDiv = cheatSheetSoup.find("section", { "id" : "results-icons" })
+	fonts = wrapperDiv.findAll("li", { "class" : "dib" })
+	global icons
+	i = 0 
+	for font in fonts:
+		icon = {}
+		faIconAnchor = font.findAll("a", {"class", "hover-bg-blue4"})[0]
+		faPrefix = faIconAnchor.findAll("svg")[0]["data-prefix"]
+		faIconURL =faIconAnchor['href']
+		faIcon = faIconURL.replace("https://fontawesome.com/icons/","").split("?")[0]
+		fontawesomeIconHTML = requests.get(faIconURL).text
+		fontawesomeIconSoup = BeautifulSoup(fontawesomeIconHTML, "html.parser")
+		icon["source"] = "fontawesome5"
+		icon["name"] = faIcon
+		topDiv = fontawesomeIconSoup.findAll("div", { "class", "relative" })[0]
+		iconJSON = json.loads(topDiv.findAll("script")[0].text.strip().replace("window.__inline_data__ = ", ""))
+		for iconData in iconJSON:
+			if "relationships" in iconData["data"]:
+				icon["categories"] = []
+				if "categories" in iconData["data"]["relationships"]:
+					for iconCat in iconData["data"]["relationships"]["categories"]["data"]:
+						icon["categories"].append(iconCat["id"])
+				icon["search"] = iconData["data"]["attributes"]["search"]["terms"]
+				icon["class"] = "fa-" + iconData["data"]["attributes"]['id']
+				icon["unicode"] = iconData["data"]["attributes"]['unicode']
+				icon["prefix"] = faPrefix
+				icon["version"] = "5.0.0"
+		if len(icon["search"]) == 0:
+			icon["search"].append(icon["name"])
+		if len(icon["categories"]) == 0:
+			icon["categories"].append("-")
+ 		icon["objectID"] = "fa5-"+faPrefix+"-"+faIcon
+		icons.append(icon)
+		i = i + 1
+		print i
+	printText(str(len(icons)))
+
 
 def scrapeFontAwesomeCheatsheet():
 	# client = algoliasearch.Client("**********", "************************")
