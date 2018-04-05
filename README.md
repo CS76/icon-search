@@ -1,4 +1,7 @@
-# Icon Search - 1.0
+# Icon Search - 1.1
+
+Now supports Fontawesome 5
+
 A Google Chrome extension that allows you to search, preview and choose icons across various opensource icon libraries. You can copy the selected icon as a HTML code / Unicode / various styles in one click.
 
 DEMO: https://cs76.github.io/icon-search
