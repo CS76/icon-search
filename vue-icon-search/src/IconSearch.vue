@@ -8,51 +8,51 @@
               <button @click="changeSelectedResource(resource)" :class="[selectedResource == resource ? 'is-primary' : '']" class="button is-small"><b><span class="capitalize">{{ resource }}</span></b></button> 
             </span>    
           </div>
+          <div class="field">
+            <label class="label has-text-grey" for="search">Search <span class="capitalize">{{ selectedResource }}</span> Icons </label>
+            <div class="columns is-mobile">
+              <div class="column is-three-quarters">
+                <p class="control has-icons-left has-icons-right">
+                  <input autocomplete="off" name="search" class="input" type="text" v-model="query" v-on:keyup="search">
+                  <span class="icon is-small is-left">
+                    <i class="fa fa-search"></i>
+                  </span>
+                </p>
+              </div>
+              <div class="column">
+                <img style="margin-top: 10px;" src="https://www.algolia.com/assets/pricing_new/algolia-powered-by-ac7dba62d03d1e28b0838c5634eb42a9.svg" alt="">
+              </div>
+            </div>
+          </div>
+          <div v-if="selectedResource == 'fontawesome5'">
+            <fontawesome-5 :query="query" :loading="loading" :icons="icons">
+            </fontawesome-5>
+          </div>
+          <div v-if="selectedResource == 'fontawesome'">
+            <fontawesome :query="query" :loading="loading" :icons="icons"></fontawesome>
+          </div>
+          <div v-if="selectedResource == 'foundation'">
+            <zurb :query="query" :loading="loading" :icons="icons"></zurb>
+          </div>
+          <div v-if="selectedResource == 'material'">
+            <material :query="query" :loading="loading" :icons="icons"></material>
+          </div>
+          <div v-if="selectedResource == 'iconic'">
+            <iconic :query="query" :loading="loading" :icons="icons"></iconic>
+          </div>
+          <div>
+              <small>
+                <span>
+                  <a target="_blank" class="has-text-black-bis" href="https://opensource.org/">
+                    <img src="https://opensource.org/files/osi_keyhole_300X300_90ppi_0.png" style="height: 14px;"> MIT license</a>   |  <a target="_blank" class="has-text-black-bis" href="https://github.com/CS76/icon-search"> <i class="fab fa-github"></i> GitHub</a>
+                </span>
+                <span class="is-pulled-right">
+                  Made with <i class="fa fa-heart has-text-danger"></i> by <a href="https://twitter.com/mailcs76">CS76</a>
+                </span>
+              </small>  
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="field">
-      <label class="label has-text-grey" for="search">Search <span class="capitalize">{{ selectedResource }}</span> Icons </label>
-      <div class="columns is-mobile">
-        <div class="column is-three-quarters">
-          <p class="control has-icons-left has-icons-right">
-            <input autocomplete="off" name="search" class="input" type="text" v-model="query" v-on:keyup="search">
-            <span class="icon is-small is-left">
-              <i class="fa fa-search"></i>
-            </span>
-          </p>
-        </div>
-        <div class="column">
-          <img style="margin-top: 10px;" src="https://www.algolia.com/assets/pricing_new/algolia-powered-by-ac7dba62d03d1e28b0838c5634eb42a9.svg" alt="">
-        </div>
-      </div>
-    </div>
-    <div v-if="selectedResource == 'fontawesome5'">
-      <fontawesome-5 :query="query" :loading="loading" :icons="icons">
-      </fontawesome-5>
-    </div>
-    <div v-if="selectedResource == 'fontawesome'">
-      <fontawesome :query="query" :loading="loading" :icons="icons"></fontawesome>
-    </div>
-    <div v-if="selectedResource == 'foundation'">
-      <zurb :query="query" :loading="loading" :icons="icons"></zurb>
-    </div>
-    <div v-if="selectedResource == 'material'">
-      <material :query="query" :loading="loading" :icons="icons"></material>
-    </div>
-    <div v-if="selectedResource == 'iconic'">
-      <iconic :query="query" :loading="loading" :icons="icons"></iconic>
-    </div>
-    <div>
-        <small>
-          <span>
-            <a target="_blank" class="has-text-black-bis" href="https://opensource.org/">
-              <img src="https://opensource.org/files/osi_keyhole_300X300_90ppi_0.png" style="height: 14px;"> MIT license</a>   |  <a target="_blank" class="has-text-black-bis" href="https://github.com/CS76/icon-search"> <i class="fab fa-github"></i> GitHub</a>
-          </span>
-          <span class="is-pulled-right">
-            Made with <i class="fa fa-heart has-text-danger"></i> by <a href="https://twitter.com/mailcs76">CS76</a>
-          </span>
-        </small>  
       </div>
     </div>
   </div>
@@ -87,7 +87,7 @@
     },
     mounted: function () {
       this.client = algoliasearch('OMA2ZHV973', '8c9692471755b1485c8478332779b4fa')
-      this.index = this.client.initIndex('dev-icon-search')
+      this.index = this.client.initIndex('icon-search')
     },
     methods: {
       search: function () {

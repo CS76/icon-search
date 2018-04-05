@@ -85,7 +85,7 @@
         <div class="card">
           <header class="card-header">
             <p class="card-header-title">
-                <img src="./assets/fontawesome.svg"> Font Awesome 5
+                <img src="assets/fontawesome.svg"> Font Awesome 5
                 <small>
                   <a target="_blank" href="http://fontawesome.io" class="card-header-icon has-text-grey" aria-label="more options">
                       <i class="fas fa-link" aria-hidden="true"></i>
@@ -100,8 +100,8 @@
             <div class="content">
               <p>
                 <a target="_blank" href="https://fontawesome.com/get-started">
-                  <img src="./assets/fa5-1.png" alt="">
-                  <img src="./assets/fa5-2.png" alt="">
+                  <img src="assets/fa5-1.png" alt="">
+                  <img src="assets/fa5-2.png" alt="">
                 </a>
               </p>
             </div>
@@ -146,7 +146,7 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-@import 'https://pro.fontawesome.com/releases/v5.0.9/css/all.css';
+@import '//pro.fontawesome.com/releases/v5.0.9/css/all.css';
 
 html, body{
   font-size: 0.8em;

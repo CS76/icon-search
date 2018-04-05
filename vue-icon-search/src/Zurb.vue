@@ -101,7 +101,7 @@
         <div class="card">
           <header class="card-header">
             <p class="card-header-title">
-                <img style="height: 18px; margin: 5px 0" src="./assets/zurb.svg">
+                <img style="height: 18px; margin: 5px 0" src="assets/zurb.svg">
                 <small>
                   <a target="_blank" href="https://zurb.com/playground/foundation-icon-fonts-3" class="card-header-icon has-text-grey" aria-label="more options">
                       <i class="fa fa-link" aria-hidden="true"></i>
@@ -209,7 +209,7 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-@import 'https://cdn.jsdelivr.net/foundation-icons/3.0/foundation-icons.min.css';
+@import '//cdn.jsdelivr.net/foundation-icons/3.0/foundation-icons.min.css';
 
 html, body{
   font-size: 0.8em;

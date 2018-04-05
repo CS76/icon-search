@@ -90,7 +90,7 @@
         <div class="card">
           <header class="card-header">
             <p class="card-header-title">
-                <img src="./assets/material.svg"> Material Icons
+                <img src="assets/material.svg"> Material Icons
                 <small>
                   <a target="_blank" href="https://material.io/icons/" class="card-header-icon has-text-grey" aria-label="more options">
                       <i class="fa fa-link" aria-hidden="true"></i>
@@ -194,7 +194,7 @@ url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-@import 'https://fonts.googleapis.com/icon?family=Material+Icons';
+@import '//fonts.googleapis.com/icon?family=Material+Icons';
 
 html, body{
   font-size: 0.8em;

@@ -91,7 +91,7 @@
         <div class="card">
           <header class="card-header">
             <p class="card-header-title">
-                <img src="./assets/fontawesome.svg"> Font Awesome Icons
+                <img src="assets/fontawesome.svg"> Font Awesome Icons
                 <small>
                   <a target="_blank" href="http://fontawesome.io" class="card-header-icon has-text-grey" aria-label="more options">
                       <i class="fa fa-link" aria-hidden="true"></i>
@@ -182,7 +182,7 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-@import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
+@import '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
 
 html, body{
   font-size: 0.8em;
