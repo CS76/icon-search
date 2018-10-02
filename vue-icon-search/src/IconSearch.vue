@@ -1,7 +1,7 @@
 <template>
-  <div class="container is-fluid">
-    <div class="columns is-mobile has-text-left">
-      <div class="column">
+  <div>
+    <div class="is-mobile has-text-left">
+      <div>
         <div class="content-wrapper">
           <div class="sources has-text-centered">
             <span v-for="resource in resources">
@@ -13,44 +13,52 @@
             <div class="columns is-mobile">
               <div class="column is-three-quarters">
                 <p class="control has-icons-left has-icons-right">
-                  <input autocomplete="off" name="search" class="input" type="text" v-model="query" v-on:keyup="search">
+                  <input autocomplete="off" autofocus="autofocus" name="search" placeholder="Search..." class="input" type="text" v-model="query" v-on:keyup="search">
                   <span class="icon is-small is-left">
                     <i class="fa fa-search"></i>
                   </span>
+                  <p class="help">
+                  <small class="text-muted"><span class="help-block">Popular searches: edit</span> <button :disabled="query == ''" v-on:click="clearQuery()" class="btn btn-xs btn-default pull-right" style="margin-top: 5px;">Clear</button></small>
+                  </p>
                 </p>
               </div>
-              <div class="column">
+              <div class="column text-center">
                 <img style="margin-top: 10px;" src="https://www.algolia.com/assets/pricing_new/algolia-powered-by-ac7dba62d03d1e28b0838c5634eb42a9.svg" alt="">
               </div>
             </div>
           </div>
-          <div v-if="selectedResource == 'fontawesome5'">
-            <fontawesome-5 :query="query" :loading="loading" :icons="icons">
-            </fontawesome-5>
-          </div>
-          <div v-if="selectedResource == 'fontawesome'">
-            <fontawesome :query="query" :loading="loading" :icons="icons"></fontawesome>
-          </div>
-          <div v-if="selectedResource == 'foundation'">
-            <zurb :query="query" :loading="loading" :icons="icons"></zurb>
-          </div>
-          <div v-if="selectedResource == 'material'">
-            <material :query="query" :loading="loading" :icons="icons"></material>
-          </div>
-          <div v-if="selectedResource == 'iconic'">
-            <iconic :query="query" :loading="loading" :icons="icons"></iconic>
-          </div>
-          <div>
-              <small>
-                <span>
-                  <a target="_blank" class="has-text-black-bis" href="https://opensource.org/">
-                    <img src="https://opensource.org/files/osi_keyhole_300X300_90ppi_0.png" style="height: 14px;"> MIT license</a>   |  <a target="_blank" class="has-text-black-bis" href="https://github.com/CS76/icon-search"> <i class="fab fa-github"></i> GitHub</a>
-                </span>
-                <span class="is-pulled-right">
-                  Made with <i class="fa fa-heart has-text-danger"></i> by <a href="https://twitter.com/mailcs76">CS76</a>
-                </span>
-              </small>  
+          <div style="width: 660px">
+            <div v-if="selectedResource == 'fontawesome5'">
+              <fontawesome-5 :query="query" :loading="loading" :icons="icons">
+              </fontawesome-5>
             </div>
+            <div v-if="selectedResource == 'fontawesome'">
+              <fontawesome :query="query" :loading="loading" :icons="icons"></fontawesome>
+            </div>
+            <div v-if="selectedResource == 'foundation'">
+              <zurb :query="query" :loading="loading" :icons="icons"></zurb>
+            </div>
+            <div v-if="selectedResource == 'material'">
+              <material :query="query" :loading="loading" :icons="icons"></material>
+            </div>
+            <div v-if="selectedResource == 'iconic'">
+              <iconic :query="query" :loading="loading" :icons="icons"></iconic>
+            </div>
+          </div>
+          <div class="row" style="margin: 0px -40px;">
+            <hr>
+          </div>
+          <div class="footer-wrapper">
+            <span>
+              <a target="_blank" href="https://opensource.org/" class="has-text-black-bis">
+                <img src="https://opensource.org/files/osi_keyhole_300X300_90ppi_0.png" style="height: 16px;"> MIT license</a>
+                <a target="_blank" href="https://github.com/CS76/fontawesome-icon-finder" class="has-text-black-bis">
+                  <i class="fab fa-github"></i> GitHub</a>
+                  <a href="https://www.patreon.com/cs76" target="_blank" class="has-text-black-bis">
+                    <i class="far fa-hand-peace"></i> Support</a>
+                </span> 
+                <span class="is-pulled-right">
+                Made with <i class="fa fa-heart has-text-danger"></i> by <a href="https://twitter.com/mailcs76">CS76</a></span></div>
           </div>
         </div>
       </div>
@@ -90,6 +98,10 @@
       this.index = this.client.initIndex('icon-search')
     },
     methods: {
+      clearQuery: function () {
+        this.query = '';
+        this.icons = [];
+      },
       search: function () {
         var that = this
         this.loading = true;
@@ -120,6 +132,10 @@
 <style scoped>
 html, body{
   font-size: 0.8em;
+}
+
+.footer-wrapper a {
+    margin-right: 15px;
 }
 
 .loader,

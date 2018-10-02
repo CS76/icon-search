@@ -91,7 +91,7 @@
         <div class="card">
           <header class="card-header">
             <p class="card-header-title">
-                <img src="assets/fontawesome.svg"> Font Awesome Icons
+                <img src="./assets/fontawesome.svg"> Font Awesome Icons
                 <small>
                   <a target="_blank" href="http://fontawesome.io" class="card-header-icon has-text-grey" aria-label="more options">
                       <i class="fa fa-link" aria-hidden="true"></i>

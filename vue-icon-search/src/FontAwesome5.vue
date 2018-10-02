@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="columns">
     <div v-if="icons.length > 0">
       <span v-if="query != ''">
         Results ({{ icons.length }})
@@ -85,23 +85,23 @@
         <div class="card">
           <header class="card-header">
             <p class="card-header-title">
-                <img src="assets/fontawesome.svg"> Font Awesome 5
+                <img src="./assets/fontawesome.svg"> Font Awesome 5
                 <small>
                   <a target="_blank" href="http://fontawesome.io" class="card-header-icon has-text-grey" aria-label="more options">
                       <i class="fas fa-link" aria-hidden="true"></i>
                   </a>
                 </small>
-                <span class="is-right tag is-danger">
+                <!-- <span class="is-right tag is-danger">
                   <b>BETA</b>
-                </span>
+                </span> -->
             </p>
           </header>
           <div class="card-content">
             <div class="content">
               <p>
                 <a target="_blank" href="https://fontawesome.com/get-started">
-                  <img src="assets/fa5-1.png" alt="">
-                  <img src="assets/fa5-2.png" alt="">
+                  <img src="./assets/fa5-1.png" alt="">
+                  <img src="./assets/fa5-2.png" alt="">
                 </a>
               </p>
             </div>
