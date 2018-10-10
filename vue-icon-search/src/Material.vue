@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="icons.length > 0">
+    <div class="icontent-wrapper" v-if="icons.length > 0">
       <span v-if="query != ''">
         Results ({{ icons.length }})
         <br>
@@ -91,12 +91,10 @@
           <header class="card-header">
             <p class="card-header-title">
                 <img src="./assets/material.svg"> Material Icons
-                <small>
-                  <a target="_blank" href="https://material.io/icons/" class="card-header-icon has-text-grey" aria-label="more options">
-                      <i class="fa fa-link" aria-hidden="true"></i>
-                  </a>
-                </small>
             </p>
+            <a href="https://material.io/icons" target="_blank" class="card-header-icon has-text-primary" aria-label="more options">
+              <i class="fa fa-download" aria-hidden="true" style="padding-right: 5px;"></i> Download
+            </a>
           </header>
           <div class="card-content">
             <div class="content">
@@ -194,7 +192,7 @@ url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-@import '//fonts.googleapis.com/icon?family=Material+Icons';
+@import 'https://fonts.googleapis.com/icon?family=Material+Icons';
 
 html, body{
   font-size: 0.8em;

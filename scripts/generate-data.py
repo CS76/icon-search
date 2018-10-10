@@ -28,16 +28,17 @@ def main(arguments):
     parser = argparse.ArgumentParser(description=__doc__,
                                      formatter_class=argparse.RawDescriptionHelpFormatter)
     args = parser.parse_args(arguments)
-    client = algoliasearch.Client("OMA2ZHV973", "f16887717d3551149308c550f5caa179")
-    index = client.init_index('dev-icon-search')
+    # client = algoliasearch.Client("OMA2ZHV973", "")
+    # index = client.init_index('icon-search')
     # scrapeZurbCheatsheet()
     # scrapeMaterialCheatsheet()
     # scrapeFontAwesomeCheatsheet()
     # scrapeIconicCheatsheet()
-    scrapeFontAwesome5Cheatsheet()
+    # scrapeFontAwesome5Cheatsheet()
+    scrapeCryptoCoinsCheatsheet()
     global icons
-    writeDataToFile("data.json",icons)
-    index.add_objects(icons)
+    # writeDataToFile("data.json",icons)
+    # index.add_objects(icons)
 
 def scrapeMaterialCheatsheet():
 	printText("Fetching Material Data")
@@ -122,14 +123,14 @@ def scrapeFontAwesome5Cheatsheet():
 	for font in fonts:
 		icon = {}
 		faIconAnchor = font.findAll("a", {"class", "hover-bg-blue4"})[0]
-		faPrefix = faIconAnchor.findAll("svg")[0]["data-prefix"]
+		faPrefix = font.findAll("svg")[0]["data-prefix"]
 		faIconURL =faIconAnchor['href']
-		faIcon = faIconURL.replace("https://fontawesome.com/icons/","").split("?")[0]
-		fontawesomeIconHTML = requests.get(faIconURL).text
+		faIcon = faIconURL.replace("/icons/","").split("?")[0]
+		fontawesomeIconHTML = requests.get("https://fontawesome.com"+faIconURL).text
 		fontawesomeIconSoup = BeautifulSoup(fontawesomeIconHTML, "html.parser")
 		icon["source"] = "fontawesome5"
 		icon["name"] = faIcon
-		topDiv = fontawesomeIconSoup.findAll("div", { "class", "relative" })[0]
+		topDiv = fontawesomeIconSoup.findAll("body")[0]
 		iconJSON = json.loads(topDiv.findAll("script")[0].text.strip().replace("window.__inline_data__ = ", ""))
 		for iconData in iconJSON:
 			if "relationships" in iconData["data"]:
@@ -142,14 +143,15 @@ def scrapeFontAwesome5Cheatsheet():
 				icon["unicode"] = iconData["data"]["attributes"]['unicode']
 				icon["prefix"] = faPrefix
 				icon["version"] = "5.0.0"
-		if len(icon["search"]) == 0:
+		if(icon["search"] is None or len(icon["search"]) == 0):
+			icon["search"] = []
 			icon["search"].append(icon["name"])
 		if len(icon["categories"]) == 0:
 			icon["categories"].append("-")
  		icon["objectID"] = "fa5-"+faPrefix+"-"+faIcon
 		icons.append(icon)
 		i = i + 1
-		print i
+		print str(i) + ' - ' + faIcon
 	printText(str(len(icons)))
 
 
@@ -191,6 +193,38 @@ def scrapeFontAwesomeCheatsheet():
 			icons.append(icon)
 		except:
 			pass
+	printText(str(len(icons)))
+
+def scrapeCryptoCoinsCheatsheet():
+	printText("Fetching Cryptocoins Data")
+	cheatSheetHTML = open("cryptocoins.html","r")
+	listings = json.loads(open("listings.json","r").read())['data']
+	cheatSheetSoup = BeautifulSoup(cheatSheetHTML, "html.parser")
+	wrapperDiv = cheatSheetSoup.find("div", { "class" : "icons" })
+	iconClasses = wrapperDiv.findAll("i", { "class" : "cc" })
+	global icons
+	print listings;
+	i = 0 
+	for iconClass in iconClasses:
+		icon = {}
+		iconSymbol = iconClass['class'][1]
+		icon["source"] = "cryptocoins"
+		iconFullName = ''
+		for clist in listings:
+			if(clist['symbol'] == iconSymbol or clist['symbol'] == iconSymbol.replace('-alt', '')):
+				icon["search"] = [clist['name']]
+		icon["name"] = iconSymbol
+		icon["categories"] = []
+		if 'alt' in iconSymbol:
+			icon["categories"].append('alt')
+		icon["class"] = "cc " + icon["name"]
+		icon["unicode"] = "-"
+		icon["prefix"] = "cc"
+		icon["version"] = "2.6.0"
+	 	icon["objectID"] = "ci-" + iconSymbol
+		icons.append(icon)
+		i = i + 1
+		# print str(i) + ' - ' + iconName
 	printText(str(len(icons)))
 
 def printText(text):

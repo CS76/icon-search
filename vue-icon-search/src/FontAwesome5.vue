@@ -1,6 +1,6 @@
 <template>
   <div class="columns">
-    <div v-if="icons.length > 0">
+    <div class="icontent-wrapper" v-if="icons.length > 0">
       <span v-if="query != ''">
         Results ({{ icons.length }})
         <br>
@@ -86,15 +86,10 @@
           <header class="card-header">
             <p class="card-header-title">
                 <img src="./assets/fontawesome.svg"> Font Awesome 5
-                <small>
-                  <a target="_blank" href="http://fontawesome.io" class="card-header-icon has-text-grey" aria-label="more options">
-                      <i class="fas fa-link" aria-hidden="true"></i>
-                  </a>
-                </small>
-                <!-- <span class="is-right tag is-danger">
-                  <b>BETA</b>
-                </span> -->
             </p>
+            <a target="_blank" href="http://fontawesome.io" class="card-header-icon has-text-primary" aria-label="more options">
+                <i class="fas fa-download" aria-hidden="true" style="padding-right: 5px;"></i>Download
+            </a>
           </header>
           <div class="card-content">
             <div class="content">
@@ -146,7 +141,7 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-@import '//pro.fontawesome.com/releases/v5.0.9/css/all.css';
+@import 'https://pro.fontawesome.com/releases/v5.0.9/css/all.css';
 
 html, body{
   font-size: 0.8em;

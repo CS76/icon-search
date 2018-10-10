@@ -18,7 +18,7 @@
                     <i class="fa fa-search"></i>
                   </span>
                   <p class="help">
-                  <small class="text-muted"><span class="help-block">Popular searches: edit</span> <button :disabled="query == ''" v-on:click="clearQuery()" class="btn btn-xs btn-default pull-right" style="margin-top: 5px;">Clear</button></small>
+                  <small class="text-muted"><span class="help-block">Popular searches: bitcoin, edit</span> <button :disabled="query == ''" v-on:click="clearQuery()" class="btn btn-xs btn-default pull-right" style="margin-top: 5px;">Clear</button></small>
                   </p>
                 </p>
               </div>
@@ -28,6 +28,10 @@
             </div>
           </div>
           <div style="width: 660px">
+            <div v-if="selectedResource == 'cryptocoins'">
+              <cryptocoins :query="query" :loading="loading" :icons="icons">
+              </cryptocoins>
+            </div>
             <div v-if="selectedResource == 'fontawesome5'">
               <fontawesome-5 :query="query" :loading="loading" :icons="icons">
               </fontawesome-5>
@@ -67,6 +71,7 @@
 </template>
 <script>
   import algoliasearch from 'algoliasearch'
+  import Cryptocoins from './cryptocoins.vue'
   import FontAwesome5 from './FontAwesome5.vue'
   import FontAwesome from './FontAwesome.vue'
   import Material from './Material.vue'
@@ -76,6 +81,7 @@
   export default {
     name: 'icon-search',
     components: {
+      'cryptocoins': Cryptocoins,
       'fontawesome-5': FontAwesome5,
       'fontawesome' : FontAwesome,
       'material' : Material,
@@ -87,8 +93,8 @@
         query: '',
         client: null,
         index: null,
-        resources: [ 'fontawesome5' , 'fontawesome', 'foundation', 'material', 'iconic' ],
-        selectedResource: 'fontawesome5',
+        resources: [ 'cryptocoins', 'fontawesome5' , 'fontawesome', 'foundation', 'material', 'iconic' ],
+        selectedResource: 'cryptocoins',
         icons: [],        
         loading: false
       }
@@ -96,8 +102,21 @@
     mounted: function () {
       this.client = algoliasearch('OMA2ZHV973', '8c9692471755b1485c8478332779b4fa')
       this.index = this.client.initIndex('icon-search')
+      let selectedR = localStorage.getItem('selected'); 
+      if(selectedR == 'cryptoicons'){
+        selected = "cryptocoins"
+      }
+      if(selectedR === null){
+        this.selectedResource  = 'cr'
+      }else{
+        this.selectedResource  = selectedR
+      }
+      this.track()
     },
     methods: {
+      track() {
+          this.$ga.page('/')
+      },
       clearQuery: function () {
         this.query = '';
         this.icons = [];
@@ -123,6 +142,7 @@
         this.icons = []
         this.query = ''
         this.selectedResource = selection
+        localStorage.setItem('selected', selection);
       }
     }
   }
@@ -132,6 +152,10 @@
 <style scoped>
 html, body{
   font-size: 0.8em;
+}
+
+.icontent-wrapper{
+  width: 100%;
 }
 
 .footer-wrapper a {

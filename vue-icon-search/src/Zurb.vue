@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="icons.length > 0">
+    <div class="icontent-wrapper" v-if="icons.length > 0">
       <span v-if="query != ''">
         Results ({{ icons.length }})
         <br>
@@ -108,10 +108,8 @@
                   </a>
                 </small>
             </p>
-            <a href="http://zurb.com/playground/uploads/upload/upload/288/foundation-icons.zip" class="card-header-icon" aria-label="more options">
-              <span class="icon">           
-                <i class="fa fa-download" aria-hidden="true"></i>
-              </span>
+            <a href="http://zurb.com/playground/uploads/upload/upload/288/foundation-icons.zip" class="card-header-icon has-text-primary" aria-label="more options">
+              <i class="fa fa-download" aria-hidden="true" style="padding-right: 5px;"></i> Download
             </a>
           </header>
           <div class="card-content">
@@ -209,7 +207,7 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-@import '//cdn.jsdelivr.net/foundation-icons/3.0/foundation-icons.min.css';
+@import 'https://cdn.jsdelivr.net/foundation-icons/3.0/foundation-icons.min.css';
 
 html, body{
   font-size: 0.8em;

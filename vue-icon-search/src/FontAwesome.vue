@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div v-if="icons.length > 0">
+  <div class="columns">
+    <div class="icontent-wrapper" v-if="icons.length > 0">
       <span v-if="query != ''">
         Results ({{ icons.length }})
         <br>
@@ -98,12 +98,9 @@
                   </a>
                 </small>
             </p>
-            <a href="https://fontawesome.com/v4.7.0/" target="_blank" class="card-header-icon" aria-label="more options">
-              <span class="icon">           
-                <i class="fa fa-download" aria-hidden="true"></i>
-              </span>
+            <a href="https://fontawesome.com/v4.7.0/" target="_blank" class="card-header-icon has-text-primary" aria-label="more options">
+              <i class="fa fa-download" aria-hidden="true" style="padding-right: 5px;"></i> Download
             </a>
-            
           </header>
           <div class="card-content">
             <div class="content">
@@ -182,7 +179,7 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-@import '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
+@import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
 
 html, body{
   font-size: 0.8em;
