@@ -1,25 +1,12 @@
-<!doctype html>
-<!--
- This page is shown when the extension button is clicked, because the
- "browser_action" field in manifest.json contains the "default_popup" key with
- value "popup.html".
- -->
+<!DOCTYPE html>
 <html>
-  <head>
-    <title>Web Icons - Easy access / search extension</title>
-    <!--
-      - JavaScript and HTML must be in separate files: see our Content Security
-      - Policy documentation[1] for details and explanation.
-      -
-      - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
-    -->
-    <link rel=icon href=favicon.ico type=image/x-icon>
-    <link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.2/css/bulma.css>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel=stylesheet>
-    <link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css>
-    <link rel=stylesheet href=https://cdn.jsdelivr.net/foundation-icons/3.0/foundation-icons.min.css>
-    <link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic.min.css>
-    <style>
+<head>
+	<meta charset=utf-8>
+	<meta name=viewport content="width=device-width,initial-scale=1">
+	<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.2/css/bulma.css>
+	<title>vue-icon-search</title>
+	<link href=/static/css/app.68268f84e7b6582778b8af918d8061c5.css rel=stylesheet></head>
+	<style>
       .overlay{
         position: fixed !important;
       }
@@ -27,49 +14,44 @@
         padding: 100px;
         text-align: center;
       }
+      .icontent-wrapper{
+      	width: 100%;
+      }
     </style>
-    <!-- Global Site Tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-107684006-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-107684006-1');
-    </script>
-  </head>
-  <body>
-    <div class="columns">
-      <div class="column is-offset-one-quarter is-half">
-        <div class="container is-fluid">
-          <div class="columns">
-            <div class="column is-offset-one-quarter is-half">
-              <figure class="image">
-                <img src="assets/logo.png">
-              </figure>
-            </div>
-          </div>
-        </div>
-        <div id="app"></div>
-      </div>
-    </div>
-    <section>
-      <a href="https://chrome.google.com/webstore/detail/icon-search/bkijbakibakefmcoobcnfdkfhhbmgiek" target="_blank">
-        <img src="https://developer.chrome.com/webstore/images/ChromeWebStore_Badge_v2_206x58.png" alt="">
-      </a>
-    </section>
-     <div class="columns">
-      <div class="column is-offset-2 is-8">
-        <nav class="level">
-      <p class="level-item has-text-centered">
-        <iframe style="border: none;" src="https://cards.producthunt.com/cards/posts/110324?v=1" width="430" height="405" frameborder="0" scrolling="no" allowfullscreen></iframe>
-      </p>
-      <p class="level-item has-text-centered">
-        <iframe style="border: none;" src="https://cards.uplabs.com/cards/113220/post?v=1" width="430" height="405" frameborder="0" scrolling="no" allowfullscreen></iframe>
-      </p>
-    </nav>
-      </div>
-    </div>
-    <script src="js/build.js"></script>
-  </body>
+	<body>
+		<div class="columns">
+	      <div class="column is-offset-one-quarter is-half">
+	        <div class="container is-fluid">
+	          <div class="columns">
+	            <div class="column is-offset-one-quarter is-half">
+	              <figure class="image">
+	                <img src="assets/logo.png">
+	              </figure>
+	            </div>
+	          </div>
+	        </div>
+	        <div id="app"></div>
+	      </div>
+	    </div>
+	    <section class="text-center">
+	      <a href="https://chrome.google.com/webstore/detail/icon-search/bkijbakibakefmcoobcnfdkfhhbmgiek" target="_blank">
+	        <img src="https://developer.chrome.com/webstore/images/ChromeWebStore_Badge_v2_206x58.png" alt="">
+	      </a>
+	    </section>
+	     <div class="columns">
+	      <div class="column is-offset-2 is-8">
+	        <nav class="level">
+	      <p class="level-item has-text-centered">
+	        <iframe style="border: none;" src="https://cards.producthunt.com/cards/posts/110324?v=1" width="430" height="405" frameborder="0" scrolling="no" allowfullscreen></iframe>
+	      </p>
+	      <p class="level-item has-text-centered">
+	        <iframe style="border: none;" src="https://cards.uplabs.com/cards/113220/post?v=1" width="430" height="405" frameborder="0" scrolling="no" allowfullscreen></iframe>
+	      </p>
+	    </nav>
+	      </div>
+	    </div>
+		<script type=text/javascript src=/static/js/manifest.2ae2e69a05c33dfc65f8.js></script>
+		<script type=text/javascript src=/static/js/vendor.908f48f788980c8c9efc.js></script>
+		<script type=text/javascript src=/static/js/app.69a279e0aa10af4970a4.js></script>
+	</body>
 </html>
